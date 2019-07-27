@@ -9,4 +9,9 @@ public class Historic {
     private Double value;
 
     private OperationType operationType;
+
+    public Historic(Double value, OperationType operationType) {
+        this.value = value;
+        this.operationType = operationType;
+    }
 }
