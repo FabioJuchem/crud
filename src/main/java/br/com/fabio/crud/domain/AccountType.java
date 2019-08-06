@@ -5,9 +5,13 @@ public enum AccountType {
     SAVINGS("Poupança"),
     CHECKING("Corrente");
 
-    private String value;
+    private String description;
 
-    AccountType(String value){
-        this.value = value;
+    AccountType(String description){
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

@@ -1,10 +1,30 @@
 package br.com.fabio.crud.domain;
 
-public class Costumer {
+import lombok.*;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
+@Entity
+@Table(name = "costumer")
+@NoArgsConstructor
+@ToString
+@EqualsAndHashCode(of = "cpf")
+public class Costumer  implements Serializable {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id ;
+
+    @Setter
+    @Getter
+    @Column(name = "name")
     private String name;
 
-    private String cfp;
+    @Setter
+    @Getter
+    @Column(name = "cpf", unique = true)
+    private String cpf;
 
-    private Account account;
 }

@@ -5,9 +5,13 @@ public enum OperationType {
     INPUT("Entrada"),
     WITHDRAW("Saida");
 
-    private String value;
+    private String description;
 
-    OperationType(String value){
-        this.value = value;
+    OperationType(String description){
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }
