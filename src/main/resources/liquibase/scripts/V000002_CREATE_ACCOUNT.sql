@@ -1,6 +1,6 @@
 create table  account(
     id serial constraint PK_ACCOUNT primary key ,
-    account_number varchar(20),
+    account_number varchar(20) unique,
     agency varchar(100),
     balance float,
     account_type varchar(50),

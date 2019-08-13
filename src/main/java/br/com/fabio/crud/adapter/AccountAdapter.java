@@ -1,7 +1,6 @@
 package br.com.fabio.crud.adapter;
 
 import br.com.fabio.crud.domain.Account;
-import br.com.fabio.crud.domain.Costumer;
 import br.com.fabio.crud.dto.AccountPersistDTO;
 import br.com.fabio.crud.dto.AccountResponseDTO;
 import br.com.fabio.crud.repository.CostumerRepository;
@@ -21,13 +20,14 @@ public class AccountAdapter implements EntityAdapter<Account, AccountPersistDTO,
     public AccountAdapter(ModelMapper mapper) {
         this.mapper = mapper;
     }
+
     @Autowired
     private CostumerAdapter adapter;
 
     @Override
     public Account toEntity(AccountPersistDTO dto) {
-        return mapper.map(dto, Account.class);
-    }
+            return mapper.map(dto, Account.class);
+        }
 
     @Override
     public AccountResponseDTO toResponse(Account account) {

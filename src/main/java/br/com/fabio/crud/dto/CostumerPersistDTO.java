@@ -1,6 +1,7 @@
 package br.com.fabio.crud.dto;
 
 import lombok.Data;
+import org.hibernate.validator.constraints.br.CPF;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
@@ -17,6 +18,7 @@ public class CostumerPersistDTO implements Serializable {
 
     @Size(min = 11, message = "textsize.valid")
     @NotBlank(message="cpf.required")
+    @CPF
     private String cpf;
 
 }

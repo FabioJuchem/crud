@@ -37,13 +37,14 @@ public class Historic implements Serializable {
 
     @Getter
     @Setter
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
 
-    public Historic(Double value, OperationType operationType) {
+    public Historic(Double value, OperationType operationType, Account account) {
         this.value = value;
         this.operationType = operationType;
+        this.account = account;
     }
 }
