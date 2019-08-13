@@ -23,10 +23,6 @@ public class CostumerAdapter implements EntityAdapter<Costumer, CostumerPersistD
 
     @Override
     public Costumer toEntity(CostumerPersistDTO dto) {
-        Costumer costumer = costumerRepository.findByCpf(dto.getCpf());
-        if(costumer.getCpf() == dto.getCpf()){
-            this.updateEntity(costumer, dto);
-        }
         return mapper.map(dto, Costumer.class);
     }
 

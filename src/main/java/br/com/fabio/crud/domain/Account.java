@@ -12,7 +12,7 @@ import java.util.List;
 @Table(name = "account")
 @ToString
 @NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@EqualsAndHashCode(of = "accountNumber")
 public class Account implements Serializable {
 
     @Id
@@ -33,7 +33,7 @@ public class Account implements Serializable {
     @Setter
     @Getter
     @Column(name = "balance")
-    private Double balance;
+    private Double balance = 0.0;
 
     @Setter
     @Getter
@@ -61,8 +61,12 @@ public class Account implements Serializable {
     }
 
     public void withDraw(Double value){
-         this.balance -= value;
-         newHistoric(value, OperationType.WITHDRAW);
+        if(this.balance > value) {
+            this.balance -= value;
+            newHistoric(value, OperationType.WITHDRAW);
+        }else{
+            throw new RuntimeException("balance.insufficient");
+        }
     }
 
     public void deposit(Double value){
@@ -71,12 +75,16 @@ public class Account implements Serializable {
     }
 
     public void transfer(Double value, Account account){
-        this.withDraw(value);
-        account.deposit(value);
-        newHistoric(value, OperationType.WITHDRAW);
+       if(this.balance > value) {
+           this.withDraw(value);
+           account.deposit(value);
+           newHistoric(value, OperationType.WITHDRAW);
+       }else{
+           throw new RuntimeException("balance.insufficient");
+       }
     }
 
     public void newHistoric(Double value, OperationType operationType){
-        this.historic.add(new Historic(value, operationType));
+        this.historic.add(new Historic(value, operationType, this));
     }
 }
